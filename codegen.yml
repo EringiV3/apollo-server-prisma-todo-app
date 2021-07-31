@@ -1,0 +1,11 @@
+overwrite: true
+generates:
+  ./src/types/generated/graphql.ts:
+    schema: schema.graphql
+    config:
+      useIndexSignature: true
+      # リゾルバーのためのContextの型をsrc/types/context.d.tsから読み込む
+      contextType: ../context#Context
+    plugins:
+      - typescript
+      - typescript-resolvers

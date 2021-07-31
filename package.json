@@ -9,7 +9,8 @@
     "start": "node dist/index.js",
     "format": "prettier --write $PWD/'src/**/*.{js,ts}'",
     "lint": "eslint 'src/**/*.{js,ts}'",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@graphql-tools/graphql-file-loader": "^7.0.1",
@@ -19,6 +20,9 @@
     "graphql": "^15.5.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.8",
+    "@graphql-codegen/typescript": "^1.23.0",
+    "@graphql-codegen/typescript-resolvers": "^1.20.0",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
     "eslint": "^7.32.0",
