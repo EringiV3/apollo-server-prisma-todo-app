@@ -5,9 +5,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
-    "start": "node build/src/index.js",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
     "format": "prettier --write $PWD/'src/**/*.{js,ts}'",
-    "lint": "eslint 'src/**/*.{js,ts}'"
+    "lint": "eslint 'src/**/*.{js,ts}'",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "apollo-server": "^3.1.1",
