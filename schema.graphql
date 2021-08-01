@@ -1,3 +1,5 @@
+# TODO: Prismaのshemaに合わせる
+
 type Book {
   title: String
   author: String
