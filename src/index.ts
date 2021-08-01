@@ -8,20 +8,18 @@ const schema = loadSchemaSync(join(__dirname, '../schema.graphql'), {
   loaders: [new GraphQLFileLoader()],
 });
 
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
-  },
-  {
-    title: 'City of Glass',
-    author: 'Paul Auster',
-  },
-];
-
 const resolvers = {
   Query: {
-    books: () => books,
+    getUser: () => null,
+    getTodos: () => [],
+    getTodoById: () => null,
+  },
+  Mutation: {
+    addTodo: () => null,
+    updateTodo: () => null,
+    deleteTodo: () => null,
+    createUser: () => null,
+    updateUser: () => null,
   },
 };
 

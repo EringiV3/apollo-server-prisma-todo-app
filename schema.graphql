@@ -1,10 +1,50 @@
-# TODO: Prismaのshemaに合わせる
-
-type Book {
-  title: String
-  author: String
+type Query {
+  getUser: User
+  getTodos: [Todo]!
+  getTodoById(id: Int): Todo
 }
 
-type Query {
-  books: [Book!]!
+type Mutation {
+  addTodo(input: AddTodoInput): Todo
+  updateTodo(id: Int, input: UpdateTodoInput): Todo
+  deleteTodo(id: Int): Todo
+  createUser(id: String, input: UserInput): User
+  updateUser(id: String, input: UserInput): User
+}
+
+input AddTodoInput {
+  title: String
+  description: String
+}
+
+input UpdateTodoInput {
+  title: String
+  description: String
+  status: TodoStatus
+}
+
+input UserInput {
+  name: String
+}
+
+enum TodoStatus {
+  done
+  pending
+}
+
+type Todo {
+  id: Int
+  createdAt: String
+  updatedAt: String
+  title: String
+  description: String
+  status: TodoStatus
+  user: User
+  userId: String
+}
+
+type User {
+  id: String
+  name: String
+  todos: [Todo]
 }
