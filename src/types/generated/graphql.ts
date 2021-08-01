@@ -15,7 +15,7 @@ export type Scalars = {
 };
 
 export type AddTodoInput = {
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   description?: Maybe<Scalars['String']>;
 };
 
@@ -99,7 +99,7 @@ export type User = {
 };
 
 export type UserInput = {
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
