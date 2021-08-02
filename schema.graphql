@@ -1,7 +1,7 @@
 type Query {
   getUser: User
   getTodos: [Todo]!
-  getTodoById(id: Int): Todo
+  getTodoById(id: Int!): Todo
 }
 
 type Mutation {
@@ -34,11 +34,11 @@ enum TodoStatus {
 
 type Todo {
   id: Int
-  createdAt: String
-  updatedAt: String
+  createdAt: Date
+  updatedAt: Date
   title: String
   description: String
-  status: TodoStatus
+  status: TodoStatus!
   user: User
   userId: String
 }
@@ -48,3 +48,5 @@ type User {
   name: String
   todos: [Todo]
 }
+
+scalar Date
