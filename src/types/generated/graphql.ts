@@ -32,30 +32,30 @@ export type Mutation = {
 
 
 export type MutationAddTodoArgs = {
-  input?: Maybe<AddTodoInput>;
+  input: AddTodoInput;
 };
 
 
 export type MutationUpdateTodoArgs = {
-  id?: Maybe<Scalars['Int']>;
-  input?: Maybe<UpdateTodoInput>;
+  id: Scalars['Int'];
+  input: UpdateTodoInput;
 };
 
 
 export type MutationDeleteTodoArgs = {
-  id?: Maybe<Scalars['Int']>;
+  id: Scalars['Int'];
 };
 
 
 export type MutationCreateUserArgs = {
-  id?: Maybe<Scalars['String']>;
-  input?: Maybe<UserInput>;
+  id: Scalars['String'];
+  input: UserInput;
 };
 
 
 export type MutationUpdateUserArgs = {
-  id?: Maybe<Scalars['String']>;
-  input?: Maybe<UserInput>;
+  id: Scalars['String'];
+  input: UserInput;
 };
 
 export type Query = {
@@ -87,9 +87,9 @@ export type TodoStatus =
   | 'pending';
 
 export type UpdateTodoInput = {
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   description?: Maybe<Scalars['String']>;
-  status?: Maybe<TodoStatus>;
+  status: TodoStatus;
 };
 
 export type User = {
@@ -221,11 +221,11 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 }
 
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
-  addTodo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<MutationAddTodoArgs, never>>;
-  updateTodo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<MutationUpdateTodoArgs, never>>;
-  deleteTodo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<MutationDeleteTodoArgs, never>>;
-  createUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationCreateUserArgs, never>>;
-  updateUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationUpdateUserArgs, never>>;
+  addTodo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<MutationAddTodoArgs, 'input'>>;
+  updateTodo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<MutationUpdateTodoArgs, 'id' | 'input'>>;
+  deleteTodo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<MutationDeleteTodoArgs, 'id'>>;
+  createUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'id' | 'input'>>;
+  updateUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationUpdateUserArgs, 'id' | 'input'>>;
 }>;
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{

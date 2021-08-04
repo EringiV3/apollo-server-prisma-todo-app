@@ -16,7 +16,11 @@ const server = new ApolloServer({
     const token = ctx.req.headers.authorization;
     console.log({ token });
     return {
-      user: null,
+      user: {
+        id: '1',
+        name: 'eringiv3',
+        email: '',
+      },
     };
   },
 });
