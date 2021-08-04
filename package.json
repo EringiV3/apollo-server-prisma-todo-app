@@ -19,7 +19,9 @@
     "@graphql-tools/schema": "^8.0.1",
     "@prisma/client": "^2.28.0",
     "apollo-server": "^3.1.1",
-    "graphql": "^15.5.1"
+    "graphql": "^15.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^2.0.4"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.21.8",
