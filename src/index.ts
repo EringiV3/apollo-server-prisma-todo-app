@@ -24,7 +24,7 @@ const server = new ApolloServer({
     try {
       const user = await new Promise<JwtPayload>((resolve, reject) => {
         const client = jwksClient({
-          jwksUri: `https://dev-f-4x-fhm.jp.auth0.com/.well-known/jwks.json`,
+          jwksUri: `https://apollo-server-prisma-todo-app.jp.auth0.com/.well-known/jwks.json`,
         });
         jwt.verify(
           token,
@@ -36,7 +36,7 @@ const server = new ApolloServer({
           },
           {
             audience: 'https://apollo-server-prisma-todo-app.eringiv3.com',
-            issuer: `https://dev-f-4x-fhm.jp.auth0.com/`,
+            issuer: `https://apollo-server-prisma-todo-app.jp.auth0.com/`,
             algorithms: ['RS256'],
           },
           (err, decoded) => {
@@ -50,9 +50,7 @@ const server = new ApolloServer({
           }
         );
       });
-      console.log({
-        user,
-      });
+
       return {
         user: {
           id: user.sub,
