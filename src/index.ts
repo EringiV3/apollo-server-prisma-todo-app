@@ -4,8 +4,10 @@ import { addResolversToSchema } from '@graphql-tools/schema';
 import { ApolloServer } from 'apollo-server';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import jwksClient from 'jwks-rsa';
+import fetch from 'node-fetch';
 import { join } from 'path';
 import resolvers from './resolvers';
+import { Context } from './types/context';
 
 const schema = loadSchemaSync(join(__dirname, '../schema.graphql'), {
   loaders: [new GraphQLFileLoader()],
@@ -51,11 +53,23 @@ const server = new ApolloServer({
         );
       });
 
+      const userInfo = await fetch(
+        'https://apollo-server-prisma-todo-app.jp.auth0.com/userinfo',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      ).then((res) => res.json());
+
       return {
         user: {
           id: user.sub,
+          name: userInfo.nickname,
+          email: userInfo.email,
         },
-      };
+      } as Context;
     } catch (error) {
       return {
         user: undefined,
