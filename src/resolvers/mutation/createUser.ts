@@ -18,6 +18,8 @@ export const createUser: MutationResolvers['createUser'] = async (
     },
   });
 
+  console.log({ user });
+
   if (user) {
     throw new Error('Alredy exists user.');
   }

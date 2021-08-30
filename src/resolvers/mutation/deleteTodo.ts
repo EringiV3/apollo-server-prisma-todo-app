@@ -31,12 +31,13 @@ export const deleteTodo: MutationResolvers['deleteTodo'] = async (
       id: args.id,
     },
   });
-  console.log({
-    parent,
-    args,
-    context,
-    info,
-    todo,
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
   });
-  return todo;
+  if (!user) {
+    throw new Error('Not Found Error.');
+  }
+  return { ...todo, user };
 };

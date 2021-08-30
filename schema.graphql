@@ -1,6 +1,6 @@
 type Query {
   getUser: User
-  getTodos: [Todo]!
+  getTodos: [Todo!]!
   getTodoById(id: Int!): Todo
 }
 
@@ -33,14 +33,14 @@ enum TodoStatus {
 }
 
 type Todo {
-  id: Int
+  id: Int!
   createdAt: Date
   updatedAt: Date
-  title: String
+  title: String!
   description: String
   status: TodoStatus!
-  user: User
-  userId: String
+  user: User!
+  userId: String!
 }
 
 type User {

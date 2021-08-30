@@ -61,7 +61,7 @@ export type MutationUpdateUserArgs = {
 export type Query = {
   __typename?: 'Query';
   getUser?: Maybe<User>;
-  getTodos: Array<Maybe<Todo>>;
+  getTodos: Array<Todo>;
   getTodoById?: Maybe<Todo>;
 };
 
@@ -72,14 +72,14 @@ export type QueryGetTodoByIdArgs = {
 
 export type Todo = {
   __typename?: 'Todo';
-  id?: Maybe<Scalars['Int']>;
+  id: Scalars['Int'];
   createdAt?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['Date']>;
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   description?: Maybe<Scalars['String']>;
   status: TodoStatus;
-  user?: Maybe<User>;
-  userId?: Maybe<Scalars['String']>;
+  user: User;
+  userId: Scalars['String'];
 };
 
 export type TodoStatus =
@@ -230,19 +230,19 @@ export type MutationResolvers<ContextType = Context, ParentType extends Resolver
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   getUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
-  getTodos?: Resolver<Array<Maybe<ResolversTypes['Todo']>>, ParentType, ContextType>;
+  getTodos?: Resolver<Array<ResolversTypes['Todo']>, ParentType, ContextType>;
   getTodoById?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<QueryGetTodoByIdArgs, 'id'>>;
 }>;
 
 export type TodoResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo']> = ResolversObject<{
-  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   createdAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<ResolversTypes['TodoStatus'], ParentType, ContextType>;
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
-  userId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 

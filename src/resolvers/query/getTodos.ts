@@ -12,12 +12,13 @@ export const getTodos: QueryResolvers['getTodos'] = async (
       userId: context.user?.id,
     },
   });
-  console.log({
-    parent,
-    args,
-    context,
-    info,
-    todos,
+  const user = await prisma.user.findUnique({
+    where: {
+      id: context.user?.id,
+    },
   });
-  return todos;
+  if (!user) {
+    throw new Error('Not Found Error.');
+  }
+  return todos.map((todo) => ({ ...todo, user }));
 };
