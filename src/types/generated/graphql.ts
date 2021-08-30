@@ -78,7 +78,7 @@ export type Todo = {
   title: Scalars['String'];
   description?: Maybe<Scalars['String']>;
   status: TodoStatus;
-  user: User;
+  user?: Maybe<User>;
   userId: Scalars['String'];
 };
 
@@ -241,7 +241,7 @@ export type TodoResolvers<ContextType = Context, ParentType extends ResolversPar
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<ResolversTypes['TodoStatus'], ParentType, ContextType>;
-  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   userId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;

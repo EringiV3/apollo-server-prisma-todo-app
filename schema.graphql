@@ -39,7 +39,7 @@ type Todo {
   title: String!
   description: String
   status: TodoStatus!
-  user: User!
+  user: User
   userId: String!
 }
 
