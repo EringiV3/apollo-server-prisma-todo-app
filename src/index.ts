@@ -20,6 +20,9 @@ const schema = loadSchemaSync(join(__dirname, '../schema.graphql'), {
 const schemaWithResolvers = addResolversToSchema({ schema, resolvers });
 const server = new ApolloServer({
   schema: schemaWithResolvers,
+  cors: {
+    origin: '*',
+  },
   context: async (ctx) => {
     const token = ctx.req.headers.authorization?.replace('Bearer ', '');
     if (token === undefined) {
