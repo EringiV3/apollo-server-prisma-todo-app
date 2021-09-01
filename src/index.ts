@@ -6,7 +6,11 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import jwksClient from 'jwks-rsa';
 import fetch from 'node-fetch';
 import { join } from 'path';
-import { AUTH0_AUDIENCE, AUTH0_DOMAIN, PORT } from './config/constants';
+import {
+  APOLLO_SERVER_PORT,
+  AUTH0_AUDIENCE,
+  AUTH0_DOMAIN,
+} from './config/constants';
 import resolvers from './resolvers';
 import { Context } from './types/context';
 
@@ -76,6 +80,6 @@ const server = new ApolloServer({
   },
 });
 
-server.listen({ port: PORT }).then(({ url }) => {
+server.listen({ port: APOLLO_SERVER_PORT }).then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
