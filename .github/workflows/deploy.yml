@@ -44,3 +44,23 @@ jobs:
             --platform=managed \
             --allow-unauthenticated \
             --quiet
+  migration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+
+      - name: Create .env file
+        run: |
+          touch .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+
+      - name: migrate
+        run: |
+          yarn install
+          yarn prisma:deploy
