@@ -6,6 +6,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import jwksClient from 'jwks-rsa';
 import fetch from 'node-fetch';
 import { join } from 'path';
+import { AUTH0_AUDIENCE, AUTH0_DOMAIN, PORT } from './config/constants';
 import resolvers from './resolvers';
 import { Context } from './types/context';
 
@@ -26,7 +27,7 @@ const server = new ApolloServer({
     try {
       const user = await new Promise<JwtPayload>((resolve, reject) => {
         const client = jwksClient({
-          jwksUri: `https://apollo-server-prisma-todo-app.jp.auth0.com/.well-known/jwks.json`,
+          jwksUri: `${AUTH0_DOMAIN}/.well-known/jwks.json`,
         });
         jwt.verify(
           token,
@@ -37,8 +38,8 @@ const server = new ApolloServer({
             });
           },
           {
-            audience: 'https://apollo-server-prisma-todo-app.eringiv3.com',
-            issuer: `https://apollo-server-prisma-todo-app.jp.auth0.com/`,
+            audience: `${AUTH0_AUDIENCE}`,
+            issuer: `${AUTH0_DOMAIN}/`,
             algorithms: ['RS256'],
           },
           (err, decoded) => {
@@ -53,15 +54,12 @@ const server = new ApolloServer({
         );
       });
 
-      const userInfo = await fetch(
-        'https://apollo-server-prisma-todo-app.jp.auth0.com/userinfo',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      ).then((res) => res.json());
+      const userInfo = await fetch(`${AUTH0_DOMAIN}/userinfo`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      }).then((res) => res.json());
 
       return {
         user: {
@@ -78,6 +76,6 @@ const server = new ApolloServer({
   },
 });
 
-server.listen().then(({ url }) => {
+server.listen({ port: PORT }).then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
