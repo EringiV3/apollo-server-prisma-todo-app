@@ -30,12 +30,5 @@ export const updateUser: MutationResolvers['updateUser'] = async (
       name: args.input.name,
     },
   });
-  console.log({
-    parent,
-    args,
-    context,
-    info,
-    updatedUser,
-  });
   return updatedUser;
 };

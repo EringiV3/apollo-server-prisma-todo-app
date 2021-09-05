@@ -35,14 +35,12 @@ export const updateTodo: MutationResolvers['updateTodo'] = async (
       description: args.input.description,
       status: args.input.status,
     },
-  });
-  const user = await prisma.user.findUnique({
-    where: {
-      id: userId,
+    include: {
+      user: true,
     },
   });
-  if (!user) {
-    throw new Error('Not Found Error.');
-  }
-  return { ...todo, user };
+  console.log({
+    todo: JSON.stringify(todo),
+  });
+  return todo;
 };

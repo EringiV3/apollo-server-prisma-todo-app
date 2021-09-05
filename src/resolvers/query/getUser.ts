@@ -12,12 +12,5 @@ export const getUser: QueryResolvers['getUser'] = async (
       id: context.user?.id,
     },
   });
-  console.log({
-    parent,
-    args,
-    context,
-    info,
-    user,
-  });
   return user;
 };

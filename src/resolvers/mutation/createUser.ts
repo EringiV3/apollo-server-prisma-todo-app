@@ -30,12 +30,5 @@ export const createUser: MutationResolvers['createUser'] = async (
       name: args.input.name,
     },
   });
-  console.log({
-    parent,
-    args,
-    context,
-    info,
-    createdUser,
-  });
   return createdUser;
 };
