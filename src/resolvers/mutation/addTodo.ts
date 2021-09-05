@@ -14,7 +14,6 @@ export const addTodo: MutationResolvers['addTodo'] = async (
   const todo = await prisma.todo.create({
     data: {
       title: args.input.title,
-      description: args.input.description,
       status: 'pending',
       userId: userId,
     },

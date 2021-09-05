@@ -32,15 +32,11 @@ export const updateTodo: MutationResolvers['updateTodo'] = async (
     },
     data: {
       title: args.input.title,
-      description: args.input.description,
       status: args.input.status,
     },
     include: {
       user: true,
     },
-  });
-  console.log({
-    todo: JSON.stringify(todo),
   });
   return todo;
 };

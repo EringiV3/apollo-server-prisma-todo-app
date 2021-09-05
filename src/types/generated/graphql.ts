@@ -17,7 +17,6 @@ export type Scalars = {
 
 export type AddTodoInput = {
   title: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
 };
 
 
@@ -76,7 +75,6 @@ export type Todo = {
   createdAt?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['Date']>;
   title: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
   status: TodoStatus;
   user?: Maybe<User>;
   userId: Scalars['String'];
@@ -88,7 +86,6 @@ export type TodoStatus =
 
 export type UpdateTodoInput = {
   title: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
   status: TodoStatus;
 };
 
@@ -239,7 +236,6 @@ export type TodoResolvers<ContextType = Context, ParentType extends ResolversPar
   createdAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<ResolversTypes['TodoStatus'], ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   userId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;

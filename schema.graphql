@@ -14,12 +14,10 @@ type Mutation {
 
 input AddTodoInput {
   title: String!
-  description: String
 }
 
 input UpdateTodoInput {
   title: String!
-  description: String
   status: TodoStatus!
 }
 
@@ -37,7 +35,6 @@ type Todo {
   createdAt: Date
   updatedAt: Date
   title: String!
-  description: String
   status: TodoStatus!
   user: User
   userId: String!

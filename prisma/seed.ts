@@ -34,7 +34,6 @@ const createTodos = async (user: User) => {
     return prisma.todo.create({
       data: {
         title: `${user.name}_todo_${number}_title`,
-        description: `${user.name}_todo_${number}_description`,
         userId: user.id,
         status: 'pending',
       },
